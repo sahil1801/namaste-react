@@ -32,10 +32,7 @@ export const Body = () => {
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-  // Conditional Rendering
-  // if(listOfRestaurants.length === 0){
-  //     return <Shimmer/>
-  // }
+
 
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
