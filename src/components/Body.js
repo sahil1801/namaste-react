@@ -30,15 +30,16 @@ export const Body = () => {
       const json = await data.json();
   
       setListOfRestaurants(
-        json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
       );
       setFilteredRestaurant(
-        json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
       );
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
 
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
@@ -50,10 +51,10 @@ export const Body = () => {
 
   const { setUserName, loggedInUser } = useContext(UserContext);
 
-  if (listOfRestaurants.length === 0) return <Shimmer />;
+  if (listOfRestaurants?.length === 0) return <Shimmer />;
 
   return (
-    <div className="body">
+    <div className="">
       <div className="filter flex">
         <div className="search ml-20 my-4">
           <input
@@ -103,8 +104,8 @@ export const Body = () => {
       <div className="flex flex-wrap ml-14">
         {filteredRestaurant.map((restaurant) => (
           <Link
-            key={restaurant?.info.id}
-            to={"/restaurants/" + restaurant.info.id}
+            key={restaurant?.info?.id}
+            to={"/restaurants/" + restaurant?.info?.id}
           >
             {/* if the restaurantCard is promoted then add a promkoted label to it */}
             {restaurant.info.avgRating > 4.2 ? (
