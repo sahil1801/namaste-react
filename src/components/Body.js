@@ -30,10 +30,10 @@ export const Body = () => {
       const json = await data.json();
   
       setListOfRestaurants(
-        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
       );
       setFilteredRestaurant(
-        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
       );
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -102,13 +102,13 @@ export const Body = () => {
         </div>
       </div>
       <div className="flex flex-wrap ml-14">
-        {filteredRestaurant.map((restaurant) => (
+        {filteredRestaurant && Array.isArray(filteredRestaurant) && filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={"/restaurants/" + restaurant?.info?.id}
           >
             {/* if the restaurantCard is promoted then add a promkoted label to it */}
-            {restaurant.info.avgRating > 4.2 ? (
+            {restaurant?.info?.avgRating > 4.2 ? (
               <RestaurantCardPromoted resData={restaurant} />
             ) : (
               <RestaurantCard resData={restaurant} />
